@@ -44,10 +44,9 @@ export default function AIPalateConcierge() {
           <Sparkles className="w-4 h-4" />
           <span>Curio AI Concierge</span>
         </motion.div>
-        <h2 className="text-4xl md:text-5xl font-headline mb-6">Discover Your Perfect Pairing</h2>
+        <h2 className="text-4xl md:text-5xl font-headline mb-6">Let our AI helps you in your order</h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Tell us about your palate and how you're feeling. Our AI sommelier will curate a personalized 
-          experience just for you.
+          Tell us what about your crave and current mood and the AI will helps you in choosing the perfect order
         </p>
       </div>
 
