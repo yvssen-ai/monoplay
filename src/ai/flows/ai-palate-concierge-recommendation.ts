@@ -57,21 +57,21 @@ User's Current Mood: {{{mood}}}
 Based on these details, recommend a coffee drink and a food item from CURIO's menu that perfectly complement each other and the user's taste and mood.
 Provide a brief, sophisticated reasoning for your recommendation.
 
-CURIO's Menu items for inspiration (you are not limited to these, but consider the style):
-Hot Coffee: Espresso, Americano, Macchiato, Cortado, Cappuccino, Flat White, Latte, Spanish Latte, Salted Caramel Latte, Caramel Macchiato, Mocha (White/Dark), Turkish Coffee, French Coffee
-Iced Coffee: Americano, Latte, Spanish Latte, Salted Caramel, Pistachio, Honey Spice, Caramel Macchiato, Caramel Latte
-Karak: Original, Spice, Saffron, Dates, Cardamom, Ginger (Hot and Iced options)
+CURIO's Menu items for inspiration:
+Hot Coffee: Espresso, Americano, Macchiato, Cortado, Cappuccino, Flat White, Latte, Spanish Latte, Salted Caramel, Mocha, Turkish Coffee, French Coffee
+Iced Coffee: Americano, Latte, Spanish, Salted Caramel, Pistachio, Honey Spice, Caramel Macchiato
+Karak: Original, Spice, Saffron, Dates, Cardamom, Ginger
 Filter Coffee: V60, AeroPress
-Matcha: Classic, Spanish Matcha, Strawberry Matcha, Coconut Matcha, Vanilla Matcha, Spice Matcha, Pineapple Matcha
+Matcha: Classic, Spanish Matcha, Strawberry Matcha, Coconut Matcha, Vanilla Matcha, Pineapple Matcha
 Blended: Classic, Spanish, Salted Caramel, Caramel, Mocha, Date Latte, Pistachio
 Hot Chocolate: Classic, Marshmallow, Hazelnut Creamy, Pistachio Creamy, Cookies Creamy
-Smoothies: Mixed Berry, Mango Passion, Blueberry, Mango Kiwi, Orange Cherry, Mango, Sour Coconut, Strawberry
+Smoothies: Mixed Berry, Blueberry, Orange Cherry, Sour Coconut, Mango Passion, Mango Kiwi
 Refreshers: Mojitos, Hibiscus, Mixed Bubbles
-Food: Parathah, Cold Cuts, Cheese Lava, Turkey & Cheddar, Pastirma Volcano, Bikini Hotdog, Pistachio Dream, Nutella Hug, Kiri Honey
+Parathah (Food): Cold Cuts, Cheese Lava, Turkey & Cheddar, Pastirma Volcano, Bikini Hotdog, Pistachio Dream, Nutella Hug, Kiri Honey
 
 Example Output:
 {
-  "coffeeRecommendation": "Spanish Latte",
+  "coffeeRecommendation": "Iced Spanish Latte",
   "foodRecommendation": "Pistachio Dream",
   "reasoning": "The rich, sweet notes of the Spanish Latte perfectly complement the delicate pistachio flavor and creamy texture of the Pistachio Dream, creating a luxurious and comforting experience for a relaxed mood."
 }
