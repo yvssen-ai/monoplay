@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Cinematic shot of coffee pouring into a ceramic cup",
+      "imageUrl": "https://picsum.photos/seed/curio-hero/1200/800",
+      "imageHint": "coffee pouring"
+    },
+    {
+      "id": "about-image",
+      "description": "Minimalist coffee shop interior with warm lighting",
+      "imageUrl": "https://picsum.photos/seed/curio-interior/800/1000",
+      "imageHint": "minimalist cafe"
+    },
+    {
+      "id": "experience-image",
+      "description": "Barista preparing a pour-over coffee with precision",
+      "imageUrl": "https://picsum.photos/seed/curio-brew/1000/1000",
+      "imageHint": "barista brewing"
+    }
+  ]
+}
