@@ -89,7 +89,7 @@ export default function MenuSection() {
                   <CardContent className="p-8">
                     <div className="flex justify-between items-start mb-3">
                       <h3 className="text-2xl font-headline">{item.name}</h3>
-                      <span className="text-xl font-medium text-accent">{item.price} AED</span>
+                      <span className="text-xl font-medium text-accent">{item.price} EGP</span>
                     </div>
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
                       {item.description}

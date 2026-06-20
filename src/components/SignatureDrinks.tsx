@@ -50,7 +50,7 @@ export default function SignatureDrinks() {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-headline mb-2">{drink.name}</h3>
                   <div className="flex justify-between items-center">
-                    <span className="text-accent font-medium">Starting from {drink.price} AED</span>
+                    <span className="text-accent font-medium">Starting from {drink.price} EGP</span>
                     <Link href="#menu" className="p-2 rounded-full bg-secondary/50 group-hover:bg-accent group-hover:text-white transition-colors">
                       <ArrowRight className="w-4 h-4" />
                     </Link>
