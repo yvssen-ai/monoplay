@@ -85,7 +85,15 @@ const aiPalateConciergeRecommendationFlow = ai.defineFlow(
     outputSchema: AiPalateConciergeRecommendationOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      if (!output) {
+        throw new Error('The AI model returned an empty response.');
+      }
+      return output;
+    } catch (error) {
+      console.error('Genkit Flow Error:', error);
+      throw new Error('The Palate Concierge is currently resting. Please try again in a moment.');
+    }
   }
 );

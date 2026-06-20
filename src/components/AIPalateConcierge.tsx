@@ -4,29 +4,45 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Coffee, Utensils, Loader2 } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Sparkles, Coffee, Utensils, Loader2, AlertCircle } from "lucide-react";
 import { aiPalateConciergeRecommendation, AiPalateConciergeRecommendationOutput } from "@/ai/flows/ai-palate-concierge-recommendation";
+import { useToast } from "@/hooks/use-toast";
 
 export default function AIPalateConcierge() {
   const [flavor, setFlavor] = useState("");
   const [mood, setMood] = useState("");
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState<AiPalateConciergeRecommendationOutput | null>(null);
+  const { toast } = useToast();
 
   const handleGetRecommendation = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!flavor || !mood) return;
+    if (!flavor || !mood) {
+      toast({
+        title: "Information missing",
+        description: "Please share your crave and mood so we can curate your order.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     setLoading(true);
+    setRecommendation(null);
+    
     try {
       const result = await aiPalateConciergeRecommendation({
         flavorPreferences: flavor,
         mood: mood,
       });
       setRecommendation(result);
-    } catch (error) {
+    } catch (error: any) {
       console.error("AI Error:", error);
+      toast({
+        title: "Palate Concierge Error",
+        description: error.message || "Something went wrong while curating your order.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -76,9 +92,14 @@ export default function AIPalateConcierge() {
                 type="submit" 
                 size="lg" 
                 disabled={loading}
-                className="rounded-full px-12 py-7 h-auto bg-primary text-primary-foreground hover:bg-primary/90 transition-all text-lg font-medium"
+                className="rounded-full px-12 py-7 h-auto bg-primary text-primary-foreground hover:bg-primary/90 transition-all text-lg font-medium shadow-lg"
               >
-                {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : "Curate My Palate"}
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Curating...
+                  </>
+                ) : "Curate My Palate"}
               </Button>
             </div>
           </form>
