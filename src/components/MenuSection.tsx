@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -8,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search } from "lucide-react";
 import { MENU_ITEMS, MENU_CATEGORIES } from "@/lib/menu-data";
-import Image from "next/image";
 
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState("Hot Coffee");
@@ -16,40 +14,36 @@ export default function MenuSection() {
 
   const filteredItems = MENU_ITEMS.filter(item => {
     const matchesCategory = searchQuery ? true : item.category === activeCategory;
-    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <section id="menu" className="py-32 px-8 lg:px-20 bg-background">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+    <section id="menu" className="py-24 px-8 lg:px-20 bg-background">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-16 text-center md:text-left">
           <div className="max-w-xl">
-            <h2 className="text-5xl md:text-7xl font-headline mb-6">Explore <span className="text-accent">The Menu</span></h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Crafted coffee, specialty matcha, handcrafted karak, refreshing drinks, and fresh bites prepared daily.
-            </p>
+            <h2 className="text-4xl md:text-6xl font-headline mb-4">Explore <span className="text-accent">The Menu</span></h2>
           </div>
           <div className="relative w-full md:w-80">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input 
-              placeholder="Search coffee, tea..." 
-              className="pl-12 h-14 rounded-2xl bg-secondary/30 border-none focus-visible:ring-accent"
+              placeholder="Search..." 
+              className="pl-12 h-12 rounded-xl bg-secondary/30 border-none focus-visible:ring-accent"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="mb-12 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="mb-12 overflow-x-auto pb-2 scrollbar-hide">
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
             <TabsList className="bg-transparent h-auto p-0 gap-2 flex-nowrap">
               {MENU_CATEGORIES.map((cat) => (
                 <TabsTrigger 
                   key={cat} 
                   value={cat}
-                  className="rounded-full px-6 py-3 data-[state=active]:bg-primary data-[state=active]:text-white border border-transparent data-[state=inactive]:bg-secondary/50 transition-all text-sm font-medium whitespace-nowrap"
+                  className="rounded-full px-5 py-2 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=inactive]:bg-secondary/50 transition-all text-xs font-medium whitespace-nowrap"
                 >
                   {cat}
                 </TabsTrigger>
@@ -60,41 +54,30 @@ export default function MenuSection() {
 
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => (
               <motion.div
                 key={item.id}
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                <Card className="group overflow-hidden border-none bg-secondary/20 rounded-[2rem] hover:shadow-2xl transition-all duration-500">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      data-ai-hint={item.imageHint}
-                    />
-                    {item.isSignature && (
-                      <div className="absolute top-4 right-4 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-                        Signature
+                <Card className="border-none bg-secondary/10 rounded-2xl hover:bg-secondary/20 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-center">
+                      <div className="flex flex-col">
+                        <h3 className="text-lg font-headline">{item.name}</h3>
+                        {item.isSignature && (
+                          <span className="text-[10px] text-accent font-bold uppercase tracking-widest">
+                            Signature
+                          </span>
+                        )}
                       </div>
-                    )}
-                  </div>
-                  <CardContent className="p-8">
-                    <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-2xl font-headline">{item.name}</h3>
-                      <span className="text-xl font-medium text-accent">{item.price} EGP</span>
+                      <span className="text-lg font-medium text-accent">{item.price} EGP</span>
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-                      {item.description}
-                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -103,8 +86,8 @@ export default function MenuSection() {
         </motion.div>
 
         {filteredItems.length === 0 && (
-          <div className="text-center py-20 bg-secondary/10 rounded-[2rem]">
-            <p className="text-muted-foreground">No items found matching your search.</p>
+          <div className="text-center py-20 bg-secondary/5 rounded-2xl">
+            <p className="text-muted-foreground">No items found.</p>
           </div>
         )}
       </div>
