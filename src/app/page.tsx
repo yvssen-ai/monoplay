@@ -2,7 +2,6 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
-import About from "@/components/About";
 import SignatureDrinks from "@/components/SignatureDrinks";
 import MenuSection from "@/components/MenuSection";
 import AIPalateConcierge from "@/components/AIPalateConcierge";
@@ -19,7 +18,7 @@ export default function Home() {
       
       <Hero />
       <Marquee />
-      <About />
+      
       <SignatureDrinks />
       <MenuSection />
       <AIPalateConcierge />
