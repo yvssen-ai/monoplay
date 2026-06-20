@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -10,13 +11,13 @@ const MARQUEE_ITEMS = [
 export default function Marquee() {
   return (
     <div className="py-20 border-y border-accent/10 overflow-hidden bg-secondary/20">
-      <div className="flex whitespace-nowrap animate-marquee hover:pause">
+      <div className="flex whitespace-nowrap animate-marquee w-max">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="flex items-center">
+          <div key={i} className="flex items-center shrink-0">
             {MARQUEE_ITEMS.map((item, index) => (
               <span 
                 key={index} 
-                className="text-6xl md:text-8xl font-headline font-bold mx-12 text-transparent stroke-accent/40"
+                className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold mx-8 md:mx-12 text-transparent stroke-accent/40"
                 style={{ WebkitTextStroke: '1px hsl(var(--accent) / 0.3)' }}
               >
                 {item}

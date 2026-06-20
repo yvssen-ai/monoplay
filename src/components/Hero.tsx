@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -7,7 +8,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center pt-32 pb-20 px-8 lg:px-20 overflow-hidden">
       <div className="w-full max-w-[1400px] mx-auto z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-end gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-start lg:items-end gap-12">
           {/* Left Side: Heading & CTA */}
           <div className="lg:col-span-8">
             <motion.div
@@ -18,7 +19,7 @@ export default function Hero() {
               <span className="text-accent font-medium tracking-[0.4em] uppercase text-[10px] mb-8 block">
                 The Specialty Studio
               </span>
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-headline font-bold leading-[0.9] tracking-tighter mb-12">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-headline font-bold leading-[1.1] lg:leading-[0.9] tracking-tighter mb-12">
                 CRAFTED <br /> CURIOSITY. <br /> 
                 <span className="text-accent">POURED DAILY.</span>
               </h1>
@@ -42,8 +43,8 @@ export default function Hero() {
           {/* Right Side: Minimalist Info */}
           <div className="lg:col-span-4 hidden lg:block border-l border-border pl-12">
             <motion.div
-              initial={{ opacity: 0, opacity: 0 }}
-              animate={{ opacity: 1, opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.6 }}
               className="space-y-10"
             >
