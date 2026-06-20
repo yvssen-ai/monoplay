@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -78,7 +79,7 @@ export default function MenuSection() {
                       alt={item.name}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      data-ai-hint="coffee drink"
+                      data-ai-hint={item.imageHint}
                     />
                     {item.isSignature && (
                       <div className="absolute top-4 right-4 bg-accent text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
