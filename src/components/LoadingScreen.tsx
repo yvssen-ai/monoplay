@@ -11,10 +11,9 @@ export default function LoadingScreen() {
     () => {
       gsap.to(".loader-coin", { opacity: 0.25, duration: 0.6, ease: "power1.inOut", yoyo: true, repeat: -1 });
 
-      const tl = gsap.timeline({ delay: 0.1 });
+      const tl = gsap.timeline();
 
-      tl.set(containerRef.current, { autoAlpha: 1 })
-        .from(".loader-logo", {
+      tl.from(".loader-logo", {
           scale: 0.4,
           opacity: 0,
           rotate: -8,
@@ -43,7 +42,7 @@ export default function LoadingScreen() {
   return (
     <div
       ref={containerRef}
-      className="invisible fixed inset-0 z-[9999] flex items-center justify-center bg-black"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
     >
       <div className="flex flex-col items-center gap-6">
         <div className="loader-logo">

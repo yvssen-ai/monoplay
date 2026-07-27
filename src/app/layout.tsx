@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 const display = Baloo_2({
-  weight: ['500', '600', '700', '800'],
+  weight: 'variable',
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
@@ -21,6 +21,7 @@ const pixel = Press_Start_2P({
   subsets: ['latin'],
   variable: '--font-pixel',
   display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {

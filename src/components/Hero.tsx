@@ -17,7 +17,7 @@ export default function Hero() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ delay: 1.9, defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ delay: 1.8, defaults: { ease: "power3.out" } });
 
       tl.from(".hero-badge", { opacity: 0, y: -12, scale: 0.9, duration: 0.5 })
         .from(

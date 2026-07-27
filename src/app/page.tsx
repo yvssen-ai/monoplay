@@ -1,15 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import PlayEatRepeat from "@/components/PlayEatRepeat";
-import Marquee from "@/components/Marquee";
-import About from "@/components/About";
-import FeaturedGames from "@/components/FeaturedGames";
-import MenuSection from "@/components/MenuSection";
-import VisitUs from "@/components/VisitUs";
-import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+
+// Below-the-fold sections are code-split out of the critical bundle so the
+// loading screen and hero can render and hydrate as fast as possible.
+const PlayEatRepeat = dynamic(() => import("@/components/PlayEatRepeat"));
+const Marquee = dynamic(() => import("@/components/Marquee"));
+const About = dynamic(() => import("@/components/About"));
+const FeaturedGames = dynamic(() => import("@/components/FeaturedGames"));
+const MenuSection = dynamic(() => import("@/components/MenuSection"));
+const VisitUs = dynamic(() => import("@/components/VisitUs"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (
