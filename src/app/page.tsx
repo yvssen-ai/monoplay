@@ -7,7 +7,6 @@ import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import FeaturedGames from "@/components/FeaturedGames";
 import MenuSection from "@/components/MenuSection";
-import GameConcierge from "@/components/GameConcierge";
 import VisitUs from "@/components/VisitUs";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -25,7 +24,6 @@ export default function Home() {
       <About />
       <FeaturedGames />
       <MenuSection />
-      <GameConcierge />
 
       <VisitUs />
 
