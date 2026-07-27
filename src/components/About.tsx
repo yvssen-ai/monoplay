@@ -27,48 +27,54 @@ export default function About() {
 
   useGSAP(
     () => {
-      gsap.from(".about-reveal", {
-        opacity: 0,
-        y: 24,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
-
-      gsap.from(".about-card", {
-        opacity: 0,
-        y: 24,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".about-cards",
-          start: "top 80%",
-        },
-      });
-
-      const counters = gsap.utils.toArray<HTMLElement>(".about-stat-value");
-      counters.forEach((el) => {
-        const target = Number(el.dataset.value || 0);
-        const proxy = { val: 0 };
-        gsap.to(proxy, {
-          val: target,
-          duration: 1.6,
-          ease: "power2.out",
+      // Deferred a frame so this off-screen section's ScrollTrigger setup
+      // (which forces synchronous layout reads) never lands inside the same
+      // paint as the hero's critical entrance animation.
+      const raf = requestAnimationFrame(() => {
+        gsap.from(".about-reveal", {
+          opacity: 0,
+          y: 24,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            once: true,
-          },
-          onUpdate: () => {
-            el.textContent = Math.round(proxy.val).toString();
+            trigger: sectionRef.current,
+            start: "top 75%",
           },
         });
+
+        gsap.from(".about-card", {
+          opacity: 0,
+          y: 24,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".about-cards",
+            start: "top 80%",
+          },
+        });
+
+        const counters = gsap.utils.toArray<HTMLElement>(".about-stat-value");
+        counters.forEach((el) => {
+          const target = Number(el.dataset.value || 0);
+          const proxy = { val: 0 };
+          gsap.to(proxy, {
+            val: target,
+            duration: 1.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              once: true,
+            },
+            onUpdate: () => {
+              el.textContent = Math.round(proxy.val).toString();
+            },
+          });
+        });
       });
+      return () => cancelAnimationFrame(raf);
     },
     { scope: sectionRef }
   );

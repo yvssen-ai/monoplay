@@ -16,29 +16,35 @@ export default function VisitUs() {
 
   useGSAP(
     () => {
-      gsap.from(".visit-reveal", {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
+      // Deferred a frame so this off-screen section's ScrollTrigger setup
+      // (which forces synchronous layout reads) never lands inside the same
+      // paint as the hero's critical entrance animation.
+      const raf = requestAnimationFrame(() => {
+        gsap.from(".visit-reveal", {
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          },
+        });
 
-      gsap.from(".branch-card", {
-        opacity: 0,
-        x: -20,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".branch-list",
-          start: "top 80%",
-        },
+        gsap.from(".branch-card", {
+          opacity: 0,
+          x: -20,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".branch-list",
+            start: "top 80%",
+          },
+        });
       });
+      return () => cancelAnimationFrame(raf);
     },
     { scope: sectionRef }
   );

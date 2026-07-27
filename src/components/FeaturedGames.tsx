@@ -18,25 +18,31 @@ export default function FeaturedGames() {
 
   useGSAP(
     () => {
-      gsap.from(".game-card", {
-        opacity: 0,
-        x: 48,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
+      // Deferred a frame so this off-screen section's ScrollTrigger setup
+      // (which forces synchronous layout reads) never lands inside the same
+      // paint as the hero's critical entrance animation.
+      const raf = requestAnimationFrame(() => {
+        gsap.from(".game-card", {
+          opacity: 0,
+          x: 48,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          },
+        });
 
-      gsap.to(".swipe-hint", {
-        x: 6,
-        duration: 0.7,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
+        gsap.to(".swipe-hint", {
+          x: 6,
+          duration: 0.7,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut",
+        });
       });
+      return () => cancelAnimationFrame(raf);
     },
     { scope: sectionRef }
   );

@@ -30,32 +30,38 @@ export default function PlayEatRepeat() {
 
   useGSAP(
     () => {
-      gsap.from(".per-reveal", {
-        opacity: 0,
-        y: 16,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 78%" },
-      });
+      // Deferred a frame so this off-screen section's ScrollTrigger setup
+      // (which forces synchronous layout reads) never lands inside the same
+      // paint as the hero's critical entrance animation.
+      const raf = requestAnimationFrame(() => {
+        gsap.from(".per-reveal", {
+          opacity: 0,
+          y: 16,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 78%" },
+        });
 
-      gsap.utils.toArray<HTMLElement>(".per-card").forEach((card, i) => {
-        const targetRotate = Number(card.dataset.rotate || 0);
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 60, rotate: 0, scale: 0.85 },
-          {
-            opacity: 1,
-            y: 0,
-            rotate: targetRotate,
-            scale: 1,
-            duration: 0.7,
-            delay: i * 0.15,
-            ease: "back.out(1.6)",
-            scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
-          }
-        );
+        gsap.utils.toArray<HTMLElement>(".per-card").forEach((card, i) => {
+          const targetRotate = Number(card.dataset.rotate || 0);
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 60, rotate: 0, scale: 0.85 },
+            {
+              opacity: 1,
+              y: 0,
+              rotate: targetRotate,
+              scale: 1,
+              duration: 0.7,
+              delay: i * 0.15,
+              ease: "back.out(1.6)",
+              scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
+            }
+          );
+        });
       });
+      return () => cancelAnimationFrame(raf);
     },
     { scope: sectionRef }
   );
