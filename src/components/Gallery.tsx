@@ -1,54 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
 import Image from "next/image";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 const IMAGES = [
-  { src: 'https://picsum.photos/seed/curio1/600/800', size: 'tall' },
-  { src: 'https://picsum.photos/seed/curio2/600/400', size: 'small' },
-  { src: 'https://picsum.photos/seed/curio3/600/400', size: 'small' },
-  { src: 'https://picsum.photos/seed/curio4/800/600', size: 'wide' },
-  { src: 'https://picsum.photos/seed/curio5/600/800', size: 'tall' },
-  { src: 'https://picsum.photos/seed/curio6/600/400', size: 'small' },
+  { src: "https://picsum.photos/seed/monoplay-gallery1/600/800", size: "tall", alt: "Friends deep in strategy over Catan" },
+  { src: "https://picsum.photos/seed/monoplay-gallery2/600/400", size: "small", alt: "Card game night" },
+  { src: "https://picsum.photos/seed/monoplay-gallery3/600/400", size: "small", alt: "Latte at the Monoplay counter" },
+  { src: "https://picsum.photos/seed/monoplay-gallery4/800/600", size: "wide", alt: "The game library shelves" },
+  { src: "https://picsum.photos/seed/monoplay-gallery5/600/800", size: "tall", alt: "Drawing Codenames cards" },
+  { src: "https://picsum.photos/seed/monoplay-gallery6/600/400", size: "small", alt: "A cozy corner table" },
 ];
 
 export default function Gallery() {
-  return (
-    <section id="gallery" className="py-32 px-8 lg:px-20 bg-secondary/10">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-7xl font-headline mb-6">Captured <span className="text-accent">Curiosity</span></h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A glimpse into the life at CURIO. Where light meets steam and every bean is celebrated.
-          </p>
-        </div>
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 auto-rows-[200px] md:auto-rows-[250px]">
-          {IMAGES.map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`relative rounded-[2rem] overflow-hidden group shadow-md hover:shadow-xl transition-all ${
-                img.size === 'tall' ? 'row-span-2' : 
-                img.size === 'wide' ? 'col-span-2' : ''
-              }`}
-            >
-              <Image 
-                src={img.src} 
-                alt={`Curio Gallery ${i}`} 
-                fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                data-ai-hint="coffee lifestyle"
-              />
-              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="text-white font-headline text-xl">View</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+  useGSAP(
+    () => {
+      gsap.from(".gallery-item", {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section id="gallery" ref={sectionRef} className="px-6 py-20">
+      <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        Game Nights
+      </span>
+      <h2 className="mb-8 text-3xl font-headline font-bold leading-tight">
+        Captured at the <span className="text-primary">Table</span>
+      </h2>
+
+      <div className="grid auto-rows-[130px] grid-cols-2 gap-3">
+        {IMAGES.map((img, i) => (
+          <div
+            key={i}
+            className={`gallery-item group relative overflow-hidden rounded-2xl ${
+              img.size === "tall" ? "row-span-2" : img.size === "wide" ? "col-span-2" : ""
+            }`}
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover transition-transform duration-700 group-active:scale-110"
+              data-ai-hint="board game cafe"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          </div>
+        ))}
       </div>
     </section>
   );

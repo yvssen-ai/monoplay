@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { Menu, X, Dices } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 const NAV_LINKS = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Games", href: "#games" },
   { name: "Menu", href: "#menu" },
   { name: "Gallery", href: "#gallery" },
   { name: "Visit", href: "#visit" },
@@ -17,98 +18,107 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useGSAP(
+    () => {
+      if (!menuRef.current) return;
+
+      if (isOpen) {
+        gsap.set(menuRef.current, { display: "flex" });
+        gsap
+          .timeline()
+          .fromTo(
+            menuRef.current,
+            { xPercent: 100 },
+            { xPercent: 0, duration: 0.5, ease: "power4.out" }
+          )
+          .from(
+            ".mobile-nav-link",
+            { opacity: 0, y: 24, stagger: 0.06, duration: 0.4, ease: "power2.out" },
+            "-=0.25"
+          )
+          .from(".mobile-nav-cta", { opacity: 0, y: 16, duration: 0.4, ease: "power2.out" }, "-=0.15");
+      } else {
+        gsap.to(menuRef.current, {
+          xPercent: 100,
+          duration: 0.4,
+          ease: "power3.in",
+          onComplete: () => gsap.set(menuRef.current, { display: "none" }),
+        });
+      }
+    },
+    { dependencies: [isOpen] }
+  );
 
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 px-8 lg:px-20 flex items-center justify-between",
-          isScrolled ? "py-4 glass border-b shadow-sm" : "bg-transparent"
+          "fixed top-0 left-0 z-50 flex w-full items-center justify-between px-6 py-6 transition-all duration-500",
+          isScrolled ? "glass border-b py-4 shadow-sm" : "bg-transparent"
         )}
       >
-        <Link href="/" className="text-2xl font-headline tracking-widest font-bold">
-          CURIO
+        <Link href="#home" className="flex items-center gap-2 text-lg font-headline font-bold tracking-widest">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+            <Dices className="h-4 w-4 text-primary-foreground" />
+          </span>
+          MONOPLAY
         </Link>
+        <button
+          className="-mr-2 p-2"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open menu"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+      </header>
 
-        <nav className="hidden md:flex items-center gap-10">
+      <div
+        ref={menuRef}
+        className="fixed inset-0 z-[60] hidden flex-col bg-background p-8"
+      >
+        <div className="mb-16 flex items-center justify-between">
+          <span className="flex items-center gap-2 text-lg font-headline font-bold tracking-widest">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+              <Dices className="h-4 w-4 text-primary-foreground" />
+            </span>
+            MONOPLAY
+          </span>
+          <button onClick={() => setIsOpen(false)} aria-label="Close menu">
+            <X className="h-7 w-7" />
+          </button>
+        </div>
+
+        <nav className="flex flex-col gap-6">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium tracking-wide hover:text-accent transition-colors relative group"
+              className="mobile-nav-link text-4xl font-headline font-light"
+              onClick={() => setIsOpen(false)}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Button variant="default" className="hidden md:flex rounded-full px-8 bg-primary hover:bg-primary/90">
-            Reserve
+        <div className="mobile-nav-cta mt-auto border-t border-border pt-8">
+          <Button asChild size="lg" className="w-full rounded-full py-7 text-lg">
+            <Link href="#visit" onClick={() => setIsOpen(false)}>
+              Reserve a Table
+            </Link>
           </Button>
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Open Menu"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
         </div>
-      </header>
-
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[60] bg-background flex flex-col p-8 md:hidden"
-          >
-            <div className="flex justify-between items-center mb-16">
-              <span className="text-2xl font-headline font-bold">CURIO</span>
-              <button onClick={() => setIsMobileMenuOpen(false)}>
-                <X className="w-8 h-8" />
-              </button>
-            </div>
-
-            <nav className="flex flex-col gap-8">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-4xl font-headline font-light"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </nav>
-
-            <div className="mt-auto pt-8 border-t">
-              <Button size="lg" className="w-full rounded-full py-8 text-xl">
-                Reserve a Table
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
     </>
   );
 }

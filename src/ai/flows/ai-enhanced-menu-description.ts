@@ -29,10 +29,10 @@ const prompt = ai.definePrompt({
   name: 'aiEnhancedMenuDescriptionPrompt',
   input: {schema: AiEnhancedMenuDescriptionInputSchema},
   output: {schema: AiEnhancedMenuDescriptionOutputSchema},
-  prompt: `You are a seasoned culinary expert and a master storyteller for CURIO, a premium specialty coffee brand. Your task is to craft an evocative and unique description for the following menu item.
+  prompt: `You are a friendly menu writer for Monoplay, Egypt's first board games cafe. Your task is to craft a short, inviting description for the following menu item.
 
-Focus on highlighting its craftsmanship, origin (if applicable), and tasting notes. The description should be immersive, cinematic, minimal, and refined, aligning with CURIO's brand personality:
-Curious, Warm, Minimal, Modern, Premium, Crafted, Calm, Elegant, Welcoming, Sophisticated, Timeless, and Intentional.
+Focus on flavor and comfort — this is a menu for people settling in for a long game night. The tone should be warm, playful, and unpretentious, aligning with Monoplay's brand personality:
+Fun, Social, Welcoming, Energetic, Cozy, and Community-driven.
 
 Avoid generic cafe language, unnecessary jargon, or overly decorative phrases. Embrace the 'less but better' philosophy, making every word count to convey luxury and depth. The language should be warm, organic, and sophisticated.
 

@@ -1,73 +1,99 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MapPin, Clock, Phone, Wifi, Zap } from "lucide-react";
+import { useRef } from "react";
+import { MapPin, Clock, Instagram, Music2 } from "lucide-react";
+import { gsap, useGSAP } from "@/lib/gsap";
+
+const BRANCHES = [
+  { name: "Almaza City Centre", area: "Beside EgyptAir Hospital, Heliopolis" },
+  { name: "Mall of Egypt", area: "Gate A1, 6th of October" },
+  { name: "The Yard", area: "El Rehab City, Gate 6" },
+  { name: "Grip 'N Climb — CFC", area: "New Cairo" },
+];
 
 export default function VisitUs() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".visit-reveal", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
+
+      gsap.from(".branch-card", {
+        opacity: 0,
+        x: -20,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".branch-list",
+          start: "top 80%",
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section id="visit" className="py-32 px-8 lg:px-20 bg-background">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
-        <div className="flex flex-col justify-center">
-          <h2 className="text-5xl md:text-7xl font-headline mb-12">Visit <span className="text-accent">CURIO</span></h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-accent mb-4">
-                <MapPin className="w-5 h-5" />
-                <h4 className="font-headline text-lg uppercase tracking-widest">Location</h4>
-              </div>
-              <p className="text-muted-foreground leading-relaxed">
-                123 Curiosity Lane, Al Quoz 1<br />
-                Dubai, United Arab Emirates
-              </p>
-            </div>
+    <section id="visit" ref={sectionRef} className="px-6 py-20">
+      <span className="visit-reveal mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        Find Us
+      </span>
+      <h2 className="visit-reveal mb-8 text-3xl font-headline font-bold leading-tight">
+        Visit <span className="text-primary">Monoplay</span>
+      </h2>
 
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-accent mb-4">
-                <Clock className="w-5 h-5" />
-                <h4 className="font-headline text-lg uppercase tracking-widest">Opening Hours</h4>
-              </div>
-              <div className="text-muted-foreground text-sm space-y-2">
-                <p className="flex justify-between"><span>Sun — Thu</span> <span>8:00 AM – 12:00 AM</span></p>
-                <p className="flex justify-between"><span>Fri — Sat</span> <span>8:00 AM – 2:00 AM</span></p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-accent mb-4">
-                <Wifi className="w-5 h-5" />
-                <h4 className="font-headline text-lg uppercase tracking-widest">Utility</h4>
-              </div>
-              <ul className="text-muted-foreground text-sm space-y-2">
-                <li className="flex items-center gap-2"><Zap className="w-3 h-3" /> High-speed Wi-Fi</li>
-                <li className="flex items-center gap-2"><Zap className="w-3 h-3" /> Power outlets available</li>
-              </ul>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-accent mb-4">
-                <Phone className="w-5 h-5" />
-                <h4 className="font-headline text-lg uppercase tracking-widest">Contact</h4>
-              </div>
-              <p className="text-muted-foreground">+971 4 000 0000</p>
-              <p className="text-muted-foreground">hello@curio.coffee</p>
+      <div className="branch-list mb-8 flex flex-col gap-3">
+        {BRANCHES.map((branch) => (
+          <div
+            key={branch.name}
+            className="branch-card flex items-start gap-3 rounded-2xl border border-border bg-card/60 p-5"
+          >
+            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <div>
+              <h4 className="font-headline text-base">{branch.name}</h4>
+              <p className="text-sm text-muted-foreground">{branch.area}</p>
             </div>
           </div>
+        ))}
+      </div>
+
+      <div className="visit-reveal mb-6 flex items-start gap-3 rounded-2xl bg-secondary/30 p-5">
+        <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+        <div>
+          <h4 className="font-headline text-base">Opening Hours</h4>
+          <p className="text-sm text-muted-foreground">
+            Hours vary by branch and mall — check our Instagram for today&apos;s times.
+          </p>
         </div>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="relative min-h-[400px] bg-secondary/30 rounded-[3rem] overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-accent/20"
+      <div className="visit-reveal flex gap-3">
+        <a
+          href="https://www.instagram.com/monoplaycafe/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary py-4 text-sm font-semibold text-primary-foreground"
         >
-          {/* Placeholder for Interactive Map */}
-          <div className="text-center p-8">
-            <MapPin className="w-12 h-12 text-accent mx-auto mb-4" />
-            <p className="text-muted-foreground font-headline text-xl">Interactive Map Experience</p>
-            <p className="text-xs text-muted-foreground/60 mt-2">Dubai, Al Quoz District</p>
-          </div>
-        </motion.div>
+          <Instagram className="h-4 w-4" /> Instagram
+        </a>
+        <a
+          href="https://www.tiktok.com/@monoplaycafe"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border py-4 text-sm font-semibold"
+        >
+          <Music2 className="h-4 w-4" /> TikTok
+        </a>
       </div>
     </section>
   );

@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Group of friends laughing over a board game, warm cafe lighting",
+      "imageUrl": "https://picsum.photos/seed/monoplay-hero/1200/800",
+      "imageHint": "board game night"
+    },
+    {
+      "id": "about-image",
+      "description": "Wall of board game boxes stacked floor to ceiling at Monoplay",
+      "imageUrl": "https://picsum.photos/seed/monoplay-shelf/800/1000",
+      "imageHint": "board game shelf"
+    },
+    {
+      "id": "experience-image",
+      "description": "Close-up of dice and game pieces mid-roll on a wooden table",
+      "imageUrl": "https://picsum.photos/seed/monoplay-dice/1000/1000",
+      "imageHint": "dice roll"
+    }
+  ]
 }

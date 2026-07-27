@@ -4,30 +4,35 @@
 
 @layer base {
   :root {
-    --background: 42 27% 94%; /* #F5F2EC */
-    --foreground: 0 0% 11%; /* #1B1B1B */
-    --card: 42 27% 96%;
-    --card-foreground: 0 0% 11%;
-    --popover: 42 27% 94%;
-    --popover-foreground: 0 0% 11%;
-    --primary: 25 33% 33%; /* #6F4E37 */
-    --primary-foreground: 42 27% 98%;
-    --secondary: 42 20% 89%; /* #E9E5DE */
-    --secondary-foreground: 25 33% 33%;
-    --muted: 42 20% 89%;
-    --muted-foreground: 25 10% 40%;
-    --accent: 31 34% 49%; /* #A67C52 */
-    --accent-foreground: 42 27% 98%;
+    /* Monoplay — dark game-table canvas with dice-red & gold accents */
+    --background: 240 14% 7%; /* #0F0F14 */
+    --foreground: 42 33% 95%; /* #F5F0E4 */
+    --card: 240 12% 11%;
+    --card-foreground: 42 33% 95%;
+    --popover: 240 12% 10%;
+    --popover-foreground: 42 33% 95%;
+    --primary: 355 82% 57%; /* Monoplay Red #E63946-ish */
+    --primary-foreground: 42 33% 98%;
+    --secondary: 240 10% 15%;
+    --secondary-foreground: 42 20% 92%;
+    --muted: 240 10% 16%;
+    --muted-foreground: 240 8% 65%;
+    --accent: 45 97% 58%; /* Dice Gold #FBC02D-ish */
+    --accent-foreground: 240 14% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 34 22% 80%; /* #CBBBA8-ish */
-    --input: 34 22% 85%;
-    --ring: 25 33% 33%;
-    --radius: 1.5rem;
+    --border: 240 10% 20%;
+    --input: 240 10% 18%;
+    --ring: 45 97% 58%;
+    --radius: 1.75rem;
   }
 
   * {
     @apply border-border;
+  }
+
+  html {
+    @apply bg-[#050506];
   }
 
   body {
@@ -45,37 +50,68 @@
     text-wrap: balance;
   }
   .glass {
-    @apply bg-background/70 backdrop-blur-md border border-white/20;
+    @apply bg-background/70 backdrop-blur-md border border-white/10;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .snap-x-mandatory {
+    scroll-snap-type: x mandatory;
+  }
+  .snap-center {
+    scroll-snap-align: center;
   }
 }
 
-/* Custom Cursor Styles */
-.custom-cursor {
-  width: 20px;
-  height: 20px;
-  background-color: hsl(var(--accent));
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  transition: transform 0.1s ease-out, background-color 0.3s ease;
+/* Mobile-only "device" shell — the site is designed exclusively for phone
+   viewports; wider screens just see it centered like an app preview. */
+.phone-shell-backdrop {
+  background:
+    radial-gradient(circle at 15% 0%, hsl(var(--primary) / 0.18), transparent 55%),
+    radial-gradient(circle at 85% 100%, hsl(var(--accent) / 0.14), transparent 55%),
+    #050506;
+  background-attachment: fixed;
 }
 
-.custom-cursor.active {
-  transform: scale(3);
-  background-color: transparent;
-  border: 1px solid white;
+.phone-shell {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+  min-height: 100dvh;
+  background: hsl(var(--background));
+  isolation: isolate;
 }
 
-/* Smooth Scroll Container */
+@media (min-width: 460px) {
+  .phone-shell {
+    min-height: calc(100dvh - 3rem);
+    margin-block: 1.5rem;
+    border-radius: 2.5rem;
+    border: 1px solid hsl(var(--foreground) / 0.08);
+    box-shadow: 0 40px 100px -30px hsl(0 0% 0% / 0.8);
+    overflow: hidden;
+  }
+}
+
+/* Dotted "game board" texture used behind hero/section accents */
+.board-dots {
+  background-image: radial-gradient(hsl(var(--foreground) / 0.14) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Smooth Scroll */
 html {
   scroll-behavior: smooth;
 }
 
 /* Hide scrollbar for cleaner look */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;

@@ -1,92 +1,95 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { Search, Star } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { Search } from "lucide-react";
 import { MENU_ITEMS, MENU_CATEGORIES } from "@/lib/menu-data";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState("Hot Coffee");
   const [searchQuery, setSearchQuery] = useState("");
+  const listRef = useRef<HTMLDivElement>(null);
 
-  const filteredItems = MENU_ITEMS.filter(item => {
+  const filteredItems = MENU_ITEMS.filter((item) => {
     const matchesCategory = searchQuery ? true : item.category === activeCategory;
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
+  useGSAP(
+    () => {
+      if (!listRef.current) return;
+      gsap.fromTo(
+        ".menu-item",
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: "power2.out" }
+      );
+    },
+    { dependencies: [activeCategory, searchQuery], scope: listRef }
+  );
+
   return (
-    <section id="menu" className="py-24 px-8 lg:px-20 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-16 text-center md:text-left">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-6xl font-headline mb-4">Explore <span className="text-accent">The Menu</span></h2>
-          </div>
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input 
-              placeholder="Search..." 
-              className="pl-12 h-12 rounded-xl bg-secondary/30 border-none focus-visible:ring-accent"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
+    <section id="menu" className="px-6 py-20">
+      <div className="mb-2">
+        <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          Fuel Up
+        </span>
+        <h2 className="text-3xl font-headline font-bold leading-tight">
+          Cafe <span className="text-primary">Menu</span>
+        </h2>
+      </div>
+      <p className="mb-8 text-sm text-muted-foreground">
+        Coffee, tea &amp; snacks to keep your table going all night.
+      </p>
 
-        <div className="mb-12 overflow-x-auto pb-2 scrollbar-hide">
-          <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
-            <TabsList className="bg-transparent h-auto p-0 gap-2 flex-nowrap">
-              {MENU_CATEGORIES.map((cat) => (
-                <TabsTrigger 
-                  key={cat} 
-                  value={cat}
-                  className="rounded-full px-5 py-2 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=inactive]:bg-secondary/50 transition-all text-xs font-medium whitespace-nowrap"
-                >
-                  {cat}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-        </div>
+      <div className="relative mb-6">
+        <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Input
+          placeholder="Search the menu..."
+          className="h-12 rounded-xl border-none bg-secondary/50 pl-12 focus-visible:ring-accent"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredItems.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+      <div className="no-scrollbar mb-6 overflow-x-auto">
+        <Tabs value={activeCategory} onValueChange={setActiveCategory}>
+          <TabsList className="h-auto flex-nowrap gap-2 bg-transparent p-0">
+            {MENU_CATEGORIES.map((cat) => (
+              <TabsTrigger
+                key={cat}
+                value={cat}
+                className="whitespace-nowrap rounded-full bg-secondary/60 px-4 py-2 text-xs font-medium transition-all data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
               >
-                <Card className="border-none bg-secondary/10 rounded-2xl hover:bg-secondary/20 transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex justify-between items-center">
-                      <div className="flex flex-col">
-                        <h3 className="text-lg font-headline">{item.name}</h3>
-                        {item.isSignature && (
-                          <span className="text-[10px] text-accent font-bold uppercase tracking-widest">
-                            Signature
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-lg font-medium text-accent">{item.price} EGP</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                {cat}
+              </TabsTrigger>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </TabsList>
+        </Tabs>
+      </div>
+
+      <div ref={listRef} className="flex flex-col gap-2">
+        {filteredItems.map((item) => (
+          <div
+            key={item.id}
+            className="menu-item flex items-center justify-between rounded-2xl bg-secondary/20 px-5 py-4"
+          >
+            <div className="flex flex-col">
+              <span className="font-headline text-base">{item.name}</span>
+              {item.isSignature && (
+                <span className="mt-0.5 flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-accent">
+                  <Star className="h-2.5 w-2.5 fill-accent" /> Signature
+                </span>
+              )}
+            </div>
+            <span className="font-medium text-accent">{item.price} EGP</span>
+          </div>
+        ))}
 
         {filteredItems.length === 0 && (
-          <div className="text-center py-20 bg-secondary/5 rounded-2xl">
+          <div className="rounded-2xl bg-secondary/10 py-16 text-center">
             <p className="text-muted-foreground">No items found.</p>
           </div>
         )}
