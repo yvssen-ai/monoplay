@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Library, Users2, Sofa } from "lucide-react";
-import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 const HIGHLIGHTS = [
   { icon: Library, title: "200+ Games", desc: "Strategy, party, card & cooperative — there's always a table for your group.", color: "accent" },
@@ -69,8 +69,6 @@ export default function About() {
           },
         });
       });
-
-      ScrollTrigger.refresh();
     },
     { scope: sectionRef }
   );
