@@ -77,7 +77,7 @@ export default function About() {
 
   return (
     <section id="about" ref={sectionRef} className="border-t border-border px-6 py-20">
-      <span className="about-reveal mb-4 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+      <span className="about-reveal mb-4 block font-pixel text-[10px] uppercase tracking-widest text-accent">
         Our Story
       </span>
       <h2 className="about-reveal mb-6 text-4xl font-headline font-bold leading-tight">
@@ -113,13 +113,13 @@ export default function About() {
       <div className="about-reveal halftone grid grid-cols-3 gap-3 rounded-3xl border-2 border-black bg-primary p-6 text-center text-primary-foreground">
         {STATS.map((stat) => (
           <div key={stat.label}>
-            <p className="font-headline text-3xl font-bold">
+            <p className="font-pixel text-lg">
               <span className="about-stat-value" data-value={stat.value}>
                 0
               </span>
               {stat.suffix}
             </p>
-            <p className="mt-1 text-[10px] uppercase tracking-widest text-primary-foreground/80">
+            <p className="mt-2 text-[9px] uppercase tracking-widest text-primary-foreground/80">
               {stat.label}
             </p>
           </div>

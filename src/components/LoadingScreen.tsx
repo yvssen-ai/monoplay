@@ -56,8 +56,8 @@ export default function LoadingScreen() {
             className="w-48 rounded-2xl"
           />
         </div>
-        <p className="loader-coin text-xs font-bold uppercase tracking-[0.3em] text-brand-sky">
-          Insert Coin To Start
+        <p className="loader-coin font-pixel text-[9px] uppercase tracking-widest text-brand-sky">
+          Insert Coin
         </p>
         <div className="h-1.5 w-32 overflow-hidden rounded-full bg-secondary">
           <div className="loader-bar-fill h-full w-full origin-left rounded-full bg-accent" />

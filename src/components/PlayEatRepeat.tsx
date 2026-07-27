@@ -62,7 +62,7 @@ export default function PlayEatRepeat() {
 
   return (
     <section ref={sectionRef} className="halftone px-6 pb-20 pt-4">
-      <span className="per-reveal mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-brand-sky">
+      <span className="per-reveal mb-3 block font-pixel text-[10px] uppercase tracking-widest text-brand-sky">
         The Vibe
       </span>
       <h2 className="per-reveal text-pop mb-10 text-4xl font-headline font-bold uppercase leading-[0.95] text-accent">
@@ -89,7 +89,7 @@ export default function PlayEatRepeat() {
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-black/70 px-3 py-2">
-              <p className="font-headline text-sm font-bold uppercase tracking-wide text-accent">
+              <p className="font-pixel text-[10px] uppercase text-accent">
                 {photo.caption}
               </p>
             </div>

@@ -37,8 +37,8 @@ export default function Marquee() {
             {MARQUEE_ITEMS.map((item, index) => (
               <span
                 key={index}
-                className="mx-6 flex items-center text-3xl font-headline font-bold uppercase text-transparent"
-                style={{ WebkitTextStroke: "1.5px hsl(var(--accent) / 0.5)" }}
+                className="mx-6 flex items-center font-pixel text-lg uppercase text-transparent"
+                style={{ WebkitTextStroke: "1px hsl(var(--accent) / 0.5)" }}
               >
                 {item}
                 <span className={`ml-6 h-2 w-2 rounded-full ${DOT_COLORS[index % DOT_COLORS.length]}`} />

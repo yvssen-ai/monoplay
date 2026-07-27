@@ -33,7 +33,7 @@ export default function MenuSection() {
   return (
     <section id="menu" className="px-6 py-20">
       <div className="mb-2">
-        <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+        <span className="mb-3 block font-pixel text-[10px] uppercase tracking-widest text-accent">
           Fuel Up
         </span>
         <h2 className="text-3xl font-headline font-bold leading-tight">

@@ -45,7 +45,7 @@ export default function VisitUs() {
 
   return (
     <section id="visit" ref={sectionRef} className="px-6 py-20">
-      <span className="visit-reveal mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+      <span className="visit-reveal mb-3 block font-pixel text-[10px] uppercase tracking-widest text-accent">
         Find Us
       </span>
       <h2 className="visit-reveal mb-8 text-3xl font-headline font-bold leading-tight">
@@ -82,7 +82,7 @@ export default function VisitUs() {
           href="https://www.instagram.com/monoplaycafe/"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-arcade flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary py-4 text-sm font-bold uppercase text-primary-foreground"
+          className="btn-arcade flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary py-4 font-pixel text-[10px] uppercase text-primary-foreground"
         >
           <Instagram className="h-4 w-4" /> Instagram
         </a>
@@ -90,7 +90,7 @@ export default function VisitUs() {
           href="https://www.tiktok.com/@monoplaycafe"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-arcade flex flex-1 items-center justify-center gap-2 rounded-2xl bg-black py-4 text-sm font-bold uppercase text-white"
+          className="btn-arcade flex flex-1 items-center justify-center gap-2 rounded-2xl bg-black py-4 font-pixel text-[10px] uppercase text-white"
         >
           <Music2 className="h-4 w-4" /> TikTok
         </a>

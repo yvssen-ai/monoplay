@@ -45,14 +45,14 @@ export default function FeaturedGames() {
     <section id="games" ref={sectionRef} className="py-20">
       <div className="mb-8 flex items-end justify-between px-6">
         <div>
-          <span className="mb-3 block text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+          <span className="mb-3 block font-pixel text-[10px] uppercase tracking-widest text-accent">
             Fan Favorites
           </span>
           <h2 className="text-3xl font-headline font-bold leading-tight">
             Popular <span className="text-primary">Games</span>
           </h2>
         </div>
-        <div className="swipe-hint flex items-center gap-1 text-xs text-muted-foreground">
+        <div className="swipe-hint flex items-center gap-1 font-pixel text-[9px] text-muted-foreground">
           Swipe <MoveRight className="h-3.5 w-3.5" />
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function FeaturedGames() {
                 data-ai-hint={game.category.toLowerCase()}
               />
               <span
-                className={`absolute right-3 top-3 rounded-full border-2 border-black px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${DIFFICULTY_COLOR[game.difficulty]}`}
+                className={`absolute right-3 top-3 rounded-full border-2 border-black px-3 py-1 font-pixel text-[8px] uppercase ${DIFFICULTY_COLOR[game.difficulty]}`}
               >
                 {game.difficulty}
               </span>

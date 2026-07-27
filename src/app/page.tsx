@@ -35,13 +35,13 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <a
               href="#visit"
-              className="btn-arcade rounded-2xl bg-accent px-8 py-4 font-headline font-bold uppercase text-accent-foreground"
+              className="btn-arcade rounded-2xl bg-accent px-8 py-4 font-pixel text-[11px] uppercase text-accent-foreground"
             >
               Reserve a Table
             </a>
             <a
               href="#games"
-              className="btn-arcade rounded-2xl bg-black px-8 py-4 font-headline font-bold uppercase text-white"
+              className="btn-arcade rounded-2xl bg-black px-8 py-4 font-pixel text-[11px] uppercase text-white"
             >
               Browse Games
             </a>

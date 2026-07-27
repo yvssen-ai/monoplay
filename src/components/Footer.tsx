@@ -61,7 +61,7 @@ export default function Footer() {
 
       <div className="mb-10 grid grid-cols-2 gap-8">
         <div>
-          <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/60">Navigate</h4>
+          <h4 className="mb-4 font-pixel text-[9px] uppercase tracking-widest text-white/60">Navigate</h4>
           <ul className="space-y-3 text-sm text-primary-foreground/80">
             <li><Link href="#home" className="hover:text-white">Home</Link></li>
             <li><Link href="#about" className="hover:text-white">About</Link></li>
@@ -70,7 +70,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/60">Egypt&apos;s 1st</h4>
+          <h4 className="mb-4 font-pixel text-[9px] uppercase tracking-widest text-white/60">Egypt&apos;s 1st</h4>
           <p className="text-sm text-primary-foreground/80">
             Board games cafe — Cairo. 4 branches, 200+ games, endless game nights.
           </p>
@@ -86,7 +86,7 @@ export default function Footer() {
           onClick={scrollToTop}
           className="flex items-center gap-2 text-primary-foreground/60 hover:text-white"
         >
-          <span className="text-xs font-medium uppercase tracking-widest">Back to top</span>
+          <span className="font-pixel text-[9px] uppercase tracking-widest">Back to top</span>
           <div className="footer-top-icon flex h-8 w-8 items-center justify-center rounded-full border border-white/20">
             <ArrowUp className="h-3 w-3" />
           </div>

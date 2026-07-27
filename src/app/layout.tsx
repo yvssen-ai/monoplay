@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { Inter, Baloo_2 } from 'next/font/google';
+import { Inter, Baloo_2, Press_Start_2P } from 'next/font/google';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -13,6 +13,13 @@ const display = Baloo_2({
   weight: ['500', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-display',
+  display: 'swap',
+});
+
+const pixel = Press_Start_2P({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-pixel',
   display: 'swap',
 });
 
@@ -35,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${display.variable}`}>
+    <html lang="en" className={`${inter.variable} ${display.variable} ${pixel.variable}`}>
       <body className="font-body antialiased selection:bg-accent/20 phone-shell-backdrop">
         <div className="phone-shell">
           {children}

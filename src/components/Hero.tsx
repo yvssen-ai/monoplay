@@ -83,13 +83,13 @@ export default function Hero() {
       <div className="mb-12 flex flex-col gap-4">
         <a
           href="#games"
-          className="hero-cta btn-arcade flex h-14 items-center justify-center rounded-2xl bg-primary font-headline text-sm font-bold uppercase tracking-widest text-primary-foreground"
+          className="hero-cta btn-arcade flex h-14 items-center justify-center rounded-2xl bg-primary font-pixel text-[11px] uppercase text-primary-foreground"
         >
           Explore Games
         </a>
         <a
           href="#visit"
-          className="hero-cta btn-arcade flex h-14 items-center justify-center rounded-2xl bg-accent font-headline text-sm font-bold uppercase tracking-widest text-accent-foreground"
+          className="hero-cta btn-arcade flex h-14 items-center justify-center rounded-2xl bg-accent font-pixel text-[11px] uppercase text-accent-foreground"
         >
           Reserve a Table
         </a>
@@ -98,8 +98,8 @@ export default function Hero() {
       <div className="hero-stats grid grid-cols-3 gap-3 rounded-3xl border-2 border-border bg-card/60 p-5">
         {STATS.map((stat) => (
           <div key={stat.label} className="hero-stat text-center">
-            <p className="font-headline text-2xl font-bold text-accent">{stat.value}</p>
-            <p className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">
+            <p className="font-pixel text-lg text-accent">{stat.value}</p>
+            <p className="mt-2 text-[9px] uppercase tracking-widest text-muted-foreground">
               {stat.label}
             </p>
           </div>

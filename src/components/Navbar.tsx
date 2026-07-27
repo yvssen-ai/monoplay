@@ -107,7 +107,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="mobile-nav-link text-pop text-4xl font-headline font-bold uppercase text-accent"
+              className="mobile-nav-link text-pop font-pixel text-2xl uppercase leading-relaxed text-accent"
               onClick={() => setIsOpen(false)}
             >
               {link.name}
@@ -119,7 +119,7 @@ export default function Navbar() {
           <Link
             href="#visit"
             onClick={() => setIsOpen(false)}
-            className="btn-arcade flex w-full items-center justify-center rounded-2xl bg-accent py-5 font-headline text-lg font-bold uppercase text-accent-foreground"
+            className="btn-arcade flex w-full items-center justify-center rounded-2xl bg-accent py-5 font-pixel text-xs uppercase text-accent-foreground"
           >
             Reserve a Table
           </Link>
