@@ -5,10 +5,16 @@ import { Library, Users2, Sofa } from "lucide-react";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 
 const HIGHLIGHTS = [
-  { icon: Library, title: "200+ Games", desc: "Strategy, party, card & cooperative — there's always a table for your group." },
-  { icon: Users2, title: "Game Masters", desc: "Our team teaches the rules so you can jump straight into the fun." },
-  { icon: Sofa, title: "Cozy Vibes", desc: "Great coffee, snacks, and seating built for long, loud game nights." },
+  { icon: Library, title: "200+ Games", desc: "Strategy, party, card & cooperative — there's always a table for your group.", color: "accent" },
+  { icon: Users2, title: "Game Masters", desc: "Our team teaches the rules so you can jump straight into the fun.", color: "primary" },
+  { icon: Sofa, title: "Cozy Vibes", desc: "Great coffee, snacks, and seating built for long, loud game nights.", color: "brand-sky" },
 ];
+
+const ICON_STYLE: Record<string, string> = {
+  accent: "bg-accent text-accent-foreground",
+  primary: "bg-primary text-primary-foreground",
+  "brand-sky": "bg-brand-sky text-brand-sky-foreground",
+};
 
 const STATS = [
   { value: 200, suffix: "+", label: "Games in Library" },
@@ -89,9 +95,11 @@ export default function About() {
         {HIGHLIGHTS.map((item) => (
           <div
             key={item.title}
-            className="about-card flex items-start gap-4 rounded-3xl border border-border bg-card/60 p-6"
+            className="about-card flex items-start gap-4 rounded-3xl border-2 border-border bg-card/60 p-6"
           >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+            <div
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border-2 border-black ${ICON_STYLE[item.color]}`}
+            >
               <item.icon className="h-5 w-5" />
             </div>
             <div>
@@ -102,7 +110,7 @@ export default function About() {
         ))}
       </div>
 
-      <div className="about-reveal grid grid-cols-3 gap-3 rounded-3xl bg-primary p-6 text-center text-primary-foreground">
+      <div className="about-reveal halftone grid grid-cols-3 gap-3 rounded-3xl border-2 border-black bg-primary p-6 text-center text-primary-foreground">
         {STATS.map((stat) => (
           <div key={stat.label}>
             <p className="font-headline text-3xl font-bold">

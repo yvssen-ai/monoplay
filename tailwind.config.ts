@@ -11,7 +11,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['var(--font-inter)', 'sans-serif'],
-        headline: ['var(--font-kanit)', 'sans-serif'],
+        headline: ['var(--font-display)', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -40,6 +40,10 @@ export default {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+        },
+        'brand-sky': {
+          DEFAULT: 'hsl(var(--sky))',
+          foreground: 'hsl(var(--sky-foreground))',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',

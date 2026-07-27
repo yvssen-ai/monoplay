@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { Instagram, Music2, Facebook, ArrowUp, Dices } from "lucide-react";
+import Image from "next/image";
+import { Instagram, Music2, Facebook, ArrowUp } from "lucide-react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 const SOCIALS = [
@@ -32,12 +33,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="rounded-t-[2.5rem] bg-primary px-6 pb-10 pt-16 text-primary-foreground">
-      <div className="mb-12 flex items-center gap-2 text-2xl font-headline font-bold tracking-widest">
-        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/15">
-          <Dices className="h-5 w-5" />
-        </span>
-        MONOPLAY
+    <footer className="halftone rounded-t-[2.5rem] bg-primary px-6 pb-10 pt-16 text-primary-foreground">
+      <div className="mb-12">
+        <Image
+          src="/brand/logo-crop.jpg"
+          alt="Monoplay Board Games Cafe"
+          width={597}
+          height={487}
+          className="h-14 w-auto rounded-xl"
+        />
       </div>
 
       <div className="mb-10 flex gap-3">

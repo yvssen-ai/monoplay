@@ -90,7 +90,7 @@ export default function GameConcierge() {
 
   return (
     <section ref={sectionRef} className="bg-secondary/20 px-6 py-20">
-      <div className="concierge-reveal mb-6 inline-flex items-center gap-2 rounded-full bg-accent/15 px-4 py-2 text-xs font-medium text-accent">
+      <div className="concierge-reveal mb-6 inline-flex items-center gap-2 rounded-full border-2 border-accent bg-accent/10 px-4 py-2 text-xs font-medium text-accent">
         <Sparkles className="h-3.5 w-3.5" />
         Game Night Concierge
       </div>
@@ -102,7 +102,7 @@ export default function GameConcierge() {
         match you with a game and a drink.
       </p>
 
-      <Card className="concierge-reveal border-none bg-background p-6 shadow-xl">
+      <Card className="concierge-reveal border-2 border-black bg-background p-6 shadow-xl">
         <form onSubmit={handleGetRecommendation} className="mb-8 flex flex-col gap-5">
           <div className="space-y-2">
             <label className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
@@ -130,7 +130,7 @@ export default function GameConcierge() {
             type="submit"
             size="lg"
             disabled={loading}
-            className="h-14 rounded-full bg-primary text-sm font-semibold uppercase tracking-widest text-primary-foreground hover:bg-primary/90"
+            className="btn-arcade h-14 rounded-2xl bg-primary font-headline text-sm font-bold uppercase tracking-widest text-primary-foreground hover:bg-primary"
           >
             {loading ? (
               <>
@@ -146,18 +146,18 @@ export default function GameConcierge() {
         {recommendation && (
           <div ref={resultRef} className="border-t border-border pt-8">
             <div className="mb-6 flex flex-col gap-4">
-              <div className="concierge-result-item flex gap-4 rounded-2xl bg-secondary/30 p-5">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/15">
-                  <Dices className="h-5 w-5 text-primary" />
+              <div className="concierge-result-item flex gap-4 rounded-2xl border-2 border-black bg-secondary/30 p-5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-black bg-primary">
+                  <Dices className="h-5 w-5 text-primary-foreground" />
                 </div>
                 <div>
                   <h4 className="mb-1 font-headline text-base">The Game</h4>
                   <p className="font-medium text-primary">{recommendation.gameRecommendation}</p>
                 </div>
               </div>
-              <div className="concierge-result-item flex gap-4 rounded-2xl bg-secondary/30 p-5">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/15">
-                  <Coffee className="h-5 w-5 text-accent" />
+              <div className="concierge-result-item flex gap-4 rounded-2xl border-2 border-black bg-secondary/30 p-5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-black bg-accent">
+                  <Coffee className="h-5 w-5 text-accent-foreground" />
                 </div>
                 <div>
                   <h4 className="mb-1 font-headline text-base">The Drink</h4>

@@ -27,19 +27,21 @@ export default function Marquee() {
     { scope: trackRef }
   );
 
+  const DOT_COLORS = ["bg-accent", "bg-primary", "bg-brand-sky"];
+
   return (
-    <div className="overflow-hidden border-y border-border bg-secondary/20 py-8">
+    <div className="overflow-hidden border-y-2 border-accent/30 bg-secondary/20 py-8">
       <div ref={trackRef} className="flex w-max flex-nowrap whitespace-nowrap">
         {[0, 1].map((rep) => (
           <div key={rep} className="flex shrink-0 items-center">
             {MARQUEE_ITEMS.map((item, index) => (
               <span
                 key={index}
-                className="mx-6 flex items-center text-3xl font-headline font-bold text-transparent"
-                style={{ WebkitTextStroke: "1px hsl(var(--accent) / 0.4)" }}
+                className="mx-6 flex items-center text-3xl font-headline font-bold uppercase text-transparent"
+                style={{ WebkitTextStroke: "1.5px hsl(var(--accent) / 0.5)" }}
               >
                 {item}
-                <span className="ml-6 h-1.5 w-1.5 rounded-full bg-primary/60" />
+                <span className={`ml-6 h-2 w-2 rounded-full ${DOT_COLORS[index % DOT_COLORS.length]}`} />
               </span>
             ))}
           </div>

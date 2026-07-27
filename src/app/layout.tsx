@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { Inter, Kanit } from 'next/font/google';
+import { Inter, Baloo_2 } from 'next/font/google';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -9,10 +9,10 @@ const inter = Inter({
   display: 'swap',
 });
 
-const kanit = Kanit({
-  weight: ['300', '400', '500', '600', '700', '800'],
+const display = Baloo_2({
+  weight: ['500', '600', '700', '800'],
   subsets: ['latin'],
-  variable: '--font-kanit',
+  variable: '--font-display',
   display: 'swap',
 });
 
@@ -26,7 +26,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  themeColor: '#0F0F14',
+  themeColor: '#000000',
 };
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${kanit.variable}`}>
+    <html lang="en" className={`${inter.variable} ${display.variable}`}>
       <body className="font-body antialiased selection:bg-accent/20 phone-shell-backdrop">
         <div className="phone-shell">
           {children}

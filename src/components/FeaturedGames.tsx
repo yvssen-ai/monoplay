@@ -7,9 +7,9 @@ import { GAME_ITEMS } from "@/lib/games-data";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 const DIFFICULTY_COLOR: Record<string, string> = {
-  Easy: "bg-emerald-500/15 text-emerald-400",
-  Medium: "bg-accent/15 text-accent",
-  Hard: "bg-primary/15 text-primary",
+  Easy: "bg-brand-sky text-brand-sky-foreground",
+  Medium: "bg-accent text-accent-foreground",
+  Hard: "bg-primary text-primary-foreground",
 };
 
 export default function FeaturedGames() {
@@ -61,7 +61,7 @@ export default function FeaturedGames() {
         {featured.map((game) => (
           <div
             key={game.id}
-            className="game-card snap-center w-64 shrink-0 overflow-hidden rounded-3xl border border-border bg-card"
+            className="game-card snap-center w-64 shrink-0 overflow-hidden rounded-3xl border-2 border-black bg-card"
           >
             <div className="relative h-36 w-full">
               <Image
@@ -72,7 +72,7 @@ export default function FeaturedGames() {
                 data-ai-hint={game.category.toLowerCase()}
               />
               <span
-                className={`absolute right-3 top-3 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${DIFFICULTY_COLOR[game.difficulty]}`}
+                className={`absolute right-3 top-3 rounded-full border-2 border-black px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${DIFFICULTY_COLOR[game.difficulty]}`}
               >
                 {game.difficulty}
               </span>

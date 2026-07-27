@@ -56,9 +56,9 @@ export default function VisitUs() {
         {BRANCHES.map((branch) => (
           <div
             key={branch.name}
-            className="branch-card flex items-start gap-3 rounded-2xl border border-border bg-card/60 p-5"
+            className="branch-card flex items-start gap-3 rounded-2xl border-2 border-border bg-card/60 p-5"
           >
-            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
             <div>
               <h4 className="font-headline text-base">{branch.name}</h4>
               <p className="text-sm text-muted-foreground">{branch.area}</p>
@@ -67,8 +67,8 @@ export default function VisitUs() {
         ))}
       </div>
 
-      <div className="visit-reveal mb-6 flex items-start gap-3 rounded-2xl bg-secondary/30 p-5">
-        <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+      <div className="visit-reveal mb-6 flex items-start gap-3 rounded-2xl border-2 border-border bg-secondary/30 p-5">
+        <Clock className="mt-0.5 h-5 w-5 shrink-0 text-brand-sky" />
         <div>
           <h4 className="font-headline text-base">Opening Hours</h4>
           <p className="text-sm text-muted-foreground">
@@ -82,7 +82,7 @@ export default function VisitUs() {
           href="https://www.instagram.com/monoplaycafe/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary py-4 text-sm font-semibold text-primary-foreground"
+          className="btn-arcade flex flex-1 items-center justify-center gap-2 rounded-2xl bg-primary py-4 text-sm font-bold uppercase text-primary-foreground"
         >
           <Instagram className="h-4 w-4" /> Instagram
         </a>
@@ -90,7 +90,7 @@ export default function VisitUs() {
           href="https://www.tiktok.com/@monoplaycafe"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border py-4 text-sm font-semibold"
+          className="btn-arcade flex flex-1 items-center justify-center gap-2 rounded-2xl bg-black py-4 text-sm font-bold uppercase text-white"
         >
           <Music2 className="h-4 w-4" /> TikTok
         </a>

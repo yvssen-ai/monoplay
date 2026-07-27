@@ -2,10 +2,10 @@
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import PlayEatRepeat from "@/components/PlayEatRepeat";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import FeaturedGames from "@/components/FeaturedGames";
-import Gallery from "@/components/Gallery";
 import MenuSection from "@/components/MenuSection";
 import GameConcierge from "@/components/GameConcierge";
 import VisitUs from "@/components/VisitUs";
@@ -19,31 +19,31 @@ export default function Home() {
 
       <Navbar />
       <Hero />
+      <PlayEatRepeat />
       <Marquee />
 
       <About />
       <FeaturedGames />
-      <Gallery />
       <MenuSection />
       <GameConcierge />
 
       <VisitUs />
 
       <section className="px-6 py-16 text-center">
-        <div className="relative overflow-hidden rounded-[2rem] bg-primary p-10 shadow-xl">
-          <h2 className="mb-6 text-3xl font-headline font-bold text-primary-foreground">
+        <div className="halftone relative overflow-hidden rounded-[2rem] bg-primary p-10">
+          <h2 className="text-pop-sky mb-8 text-3xl font-headline font-bold uppercase text-primary-foreground">
             Ready for game night?
           </h2>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <a
               href="#visit"
-              className="rounded-full bg-white px-8 py-4 font-bold text-primary transition-all hover:bg-accent hover:text-accent-foreground"
+              className="btn-arcade rounded-2xl bg-accent px-8 py-4 font-headline font-bold uppercase text-accent-foreground"
             >
               Reserve a Table
             </a>
             <a
               href="#games"
-              className="rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white/10"
+              className="btn-arcade rounded-2xl bg-black px-8 py-4 font-headline font-bold uppercase text-white"
             >
               Browse Games
             </a>

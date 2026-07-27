@@ -4,27 +4,30 @@
 
 @layer base {
   :root {
-    /* Monoplay — dark game-table canvas with dice-red & gold accents */
-    --background: 240 14% 7%; /* #0F0F14 */
-    --foreground: 42 33% 95%; /* #F5F0E4 */
-    --card: 240 12% 11%;
-    --card-foreground: 42 33% 95%;
-    --popover: 240 12% 10%;
-    --popover-foreground: 42 33% 95%;
-    --primary: 355 82% 57%; /* Monoplay Red #E63946-ish */
-    --primary-foreground: 42 33% 98%;
-    --secondary: 240 10% 15%;
+    /* Real Monoplay brand palette, sampled straight from the logo:
+       black canvas, mustard gold, hot magenta, sky blue. */
+    --background: 0 0% 4%; /* near-black arcade cabinet */
+    --foreground: 42 40% 95%; /* warm marquee-bulb white */
+    --card: 0 0% 9%;
+    --card-foreground: 42 40% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 42 40% 95%;
+    --primary: 330 100% 44%; /* Monoplay Magenta #E00070 */
+    --primary-foreground: 42 40% 98%;
+    --secondary: 0 0% 14%;
     --secondary-foreground: 42 20% 92%;
-    --muted: 240 10% 16%;
-    --muted-foreground: 240 8% 65%;
-    --accent: 45 97% 58%; /* Dice Gold #FBC02D-ish */
-    --accent-foreground: 240 14% 9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 47 100% 44%; /* Monoplay Gold #E0B000 */
+    --accent-foreground: 0 0% 6%;
+    --sky: 207 70% 60%; /* Monoplay Sky Blue #50A0E0 */
+    --sky-foreground: 0 0% 6%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 10% 20%;
-    --input: 240 10% 18%;
-    --ring: 45 97% 58%;
-    --radius: 1.75rem;
+    --border: 0 0% 20%;
+    --input: 0 0% 16%;
+    --ring: 47 100% 44%;
+    --radius: 1.5rem;
   }
 
   * {
@@ -32,7 +35,7 @@
   }
 
   html {
-    @apply bg-[#050506];
+    @apply bg-black;
   }
 
   body {
@@ -65,15 +68,21 @@
   .snap-center {
     scroll-snap-align: center;
   }
+  .text-sky {
+    color: hsl(var(--sky));
+  }
+  .bg-sky {
+    background-color: hsl(var(--sky));
+  }
 }
 
 /* Mobile-only "device" shell — the site is designed exclusively for phone
    viewports; wider screens just see it centered like an app preview. */
 .phone-shell-backdrop {
   background:
-    radial-gradient(circle at 15% 0%, hsl(var(--primary) / 0.18), transparent 55%),
-    radial-gradient(circle at 85% 100%, hsl(var(--accent) / 0.14), transparent 55%),
-    #050506;
+    radial-gradient(circle at 15% 0%, hsl(var(--primary) / 0.22), transparent 55%),
+    radial-gradient(circle at 85% 100%, hsl(var(--accent) / 0.16), transparent 55%),
+    #000;
   background-attachment: fixed;
 }
 
@@ -93,15 +102,44 @@
     margin-block: 1.5rem;
     border-radius: 2.5rem;
     border: 1px solid hsl(var(--foreground) / 0.08);
-    box-shadow: 0 40px 100px -30px hsl(0 0% 0% / 0.8);
+    box-shadow: 0 40px 100px -30px hsl(0 0% 0% / 0.9);
     overflow: hidden;
   }
 }
 
-/* Dotted "game board" texture used behind hero/section accents */
-.board-dots {
-  background-image: radial-gradient(hsl(var(--foreground) / 0.14) 1px, transparent 1px);
-  background-size: 18px 18px;
+/* Halftone comic-dot texture, arcade-poster style */
+.halftone {
+  background-image: radial-gradient(hsl(var(--accent) / 0.35) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+}
+
+/* Layered 3D "pop" text-shadow, matching the logo's offset-shadow lettering */
+.text-pop {
+  text-shadow:
+    2px 2px 0 hsl(var(--primary)),
+    4px 4px 0 hsl(var(--primary) / 0.6);
+}
+.text-pop-sky {
+  text-shadow:
+    2px 2px 0 hsl(var(--sky)),
+    4px 4px 0 hsl(var(--sky) / 0.6);
+}
+
+/* Chunky arcade-cabinet button: hard offset shadow that "presses in" on tap */
+.btn-arcade {
+  border: 3px solid #000;
+  box-shadow: 5px 5px 0 0 #000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-arcade:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 0 #000;
+}
+
+/* Dashed marquee-light border for cards / photo frames */
+.frame-arcade {
+  border: 3px solid hsl(var(--accent));
+  box-shadow: 6px 6px 0 0 hsl(var(--primary));
 }
 
 /* Smooth Scroll */
